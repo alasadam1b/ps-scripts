@@ -1,25 +1,28 @@
 function addAlumno {
     Clear-Host
-    [string]$entrada = Read-Host "Escribe el nombre"
-    if (!$alumnos.ContainsValue($entrada)) {
-        
+    [int]$entradaNum = Read-Host "Escribe la clave del alumno"
+    [string]$entradaNom = Read-Host "Escribe el nombre"
+    
+    if (!$alumnos.ContainsValue( $entradaNom.ToLower() )) {
+        $alumnos.Add($entradaNum, $entradaNom.ToLower())
     }
     else { Write-Host "El nombre ya existe" }
 }
 function borrarAlumno {
     mostrar
-    [int]$entrada = Read-Host "Escribe ... a eliminar"
-    $alumnos.Remove($entrada)
+    [int]$key = Read-Host "Escribe la clave del alumno a eliminar"
+    $alumnos.Remove($key)
 }
 function buscarNombre {
     
 }
 function mostrar {
     Clear-Host
-    
+    $alumnos
+    Write-Host
 }
 
-$alumnos = @{1="juan"; 2="Oscar"; 3="Adrian"; 4="Javier"}
+$alumnos = @{1="juan"; 2="oscar"; 3="adrian"; 4="javier"}
 do {
     Clear-Host
     Write-Host "
