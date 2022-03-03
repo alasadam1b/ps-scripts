@@ -5,12 +5,14 @@ function mostrarDat {
     
 }
 function lsDir {
-    
+    $dir = Read-Host "Escribe la ruta a listar"
 }
 function treeDirS {
-    
+    $dir = Read-Host "Escribe la ruta a mostrar"
+
 }
 function treeDirC {
+    $dir = Read-Host "Escribe la ruta a mostrar"
     
 }
 function usuAct {
