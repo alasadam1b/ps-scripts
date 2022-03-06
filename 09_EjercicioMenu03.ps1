@@ -1,21 +1,22 @@
 function mosCmdlet {
     $alias = Read-Host "Escribe un alias"
-
+    Get-Alias $alias
 }
 function mosAlias {
     $cmdlet = Read-Host "Escribe un cmdlet"
-
+    Get-Alias -Definition $cmdlet
 }
 function mosAyuda {
     $cmdlet = Read-Host "Escribe un cmdlet"
+    Get-Help $cmdlet
 }
 function verbosText {
     $text = Read-Host "Escribe el texto"
-
-}s
+    Get-Verb "$text*"
+}
 function cmdletText {
     $text = Read-Host "Escribe el texto"
-
+    Get-Command "$text*"
 }
 
 function menu {
