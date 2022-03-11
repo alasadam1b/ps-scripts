@@ -20,23 +20,35 @@ function mostrarDat {
 }
 function lsDir {
     $dir = Read-Host "Escribe la ruta a listar"
+    Get-ChildItem $dir
 }
 function treeDirS {
     $dir = Read-Host "Escribe la ruta a mostrar"
-
+    tree $dir
 }
 function treeDirC {
     $dir = Read-Host "Escribe la ruta a mostrar"
-    
+    tree $dir /f
 }
 function usuAct {
-    
+    foreach($user in Get-LocalUser) {
+        if ($user.Enabled) {
+            Write-Host $user
+        }
+    }
 }
 function usuDes {
-    
+    foreach($user in Get-LocalUser) {
+        if (!$user.Enabled) {
+            Write-Host $user
+        }
+    }
 }
 function nomGrup {
-    
+    $salida = Get-LocalGroup | Sort-Object -Descending
+    foreach($group in Get-LocalGroup | Sort-Object -Descending) {
+        $group >> "grupos.txt"
+    }
 }
 
 function menu {
@@ -78,4 +90,5 @@ function menu {
     } until ($op.ToUpper() -eq "S")
 }
 
+$null > grupos.txt
 menu
