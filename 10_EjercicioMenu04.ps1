@@ -45,9 +45,8 @@ function usuDes {
     }
 }
 function nomGrup {
-    $salida = Get-LocalGroup | Sort-Object -Descending
     foreach($group in Get-LocalGroup | Sort-Object -Descending) {
-        $group >> "grupos.txt"
+        [string]$group >> .\grupos.txt
     }
 }
 
