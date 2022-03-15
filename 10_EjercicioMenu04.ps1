@@ -22,30 +22,25 @@ function lsDir {
     $dir = Read-Host "Escribe la ruta a listar"
     Get-ChildItem $dir
 }
-function treeDirS {
+function treeDir([bool]$param) {
     $dir = Read-Host "Escribe la ruta a mostrar"
-    tree $dir
-}
-function treeDirC {
-    $dir = Read-Host "Escribe la ruta a mostrar"
-    tree $dir /f
-}
-function usuAct {
-    foreach($user in Get-LocalUser) {
-        if ($user.Enabled) {
-            Write-Host $user
-        }
+    if ($param) {
+        tree $dir /f
+    }
+    else {
+        tree $dir
     }
 }
-function usuDes {
+function usuAct([bool]$param) {
     foreach($user in Get-LocalUser) {
-        if (!$user.Enabled) {
+        if ($user.Enabled -eq $param) {
             Write-Host $user
         }
     }
 }
 function nomGrup {
     foreach($group in Get-LocalGroup | Sort-Object -Descending) {
+        [string]$group
         [string]$group >> .\grupos.txt
     }
 }
@@ -79,11 +74,12 @@ function menu {
             1 { testConn }
             2 { mostrarDat }
             3 { lsDir }
-            4 { treeDirS }
-            5 { treeDirC }
-            6 { usuAct }
-            7 { usuDes }
+            4 { treeDir($False) }
+            5 { treeDir($True) }
+            6 { usuAct($True) }
+            7 { usuAct($False) }
             8 { nomGrup }
+            S { Write-Host "Opción inválida" -ForegroundColor Red }
         }
         Pause
     } until ($op.ToUpper() -eq "S")
