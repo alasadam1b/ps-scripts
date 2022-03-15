@@ -79,7 +79,8 @@ function menu {
             6 { usuAct($True) }
             7 { usuAct($False) }
             8 { nomGrup }
-            S { Write-Host "Opción inválida" -ForegroundColor Red }
+            S { Write-Host "Adiós" -ForegroundColor Blue }
+            Default { Write-Host "Opción inválida" -ForegroundColor Red }
         }
         Pause
     } until ($op.ToUpper() -eq "S")
